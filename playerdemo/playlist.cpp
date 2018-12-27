@@ -62,8 +62,10 @@ bool Playlist::InitUi()
     QStringList strListPlaylist;
     GlobalHelper::GetPlaylist(strListPlaylist);
 
-    for (QString strVideoFile : strListPlaylist)
-    {
+    //for (QString strVideoFile : strListPlaylist)
+	for (int a = 0; a < strListPlaylist.count(); a++)
+	{
+		QString strVideoFile = strListPlaylist.at(a);
         QFileInfo fileInfo(strVideoFile);
         if (fileInfo.exists())
         {
@@ -93,8 +95,10 @@ bool Playlist::ConnectSignalSlots()
     bRet = connect(ui->List, &MediaList::SigAddFile, this, &Playlist::OnAddFile);
     listRet.append(bRet);
 
-	for (bool bReturn : listRet)
+	//for (bool bReturn : listRet)
+	for (int a = 0; a < listRet.count(); a++)
 	{
+		bool bReturn = listRet.at(a);
 		if (bReturn == false)
 		{
 			return false;
@@ -225,10 +229,11 @@ void Playlist::dropEvent(QDropEvent *event)
         return;
     }
 
-    for (QUrl url : urls)
+    //for (QUrl url : urls)
+	for(int a = 0; a < urls.count(); a++)
     {
+		QUrl url = urls.at(a);
         QString strFileName = url.toLocalFile();
-
         OnAddFile(strFileName);
     }
 }

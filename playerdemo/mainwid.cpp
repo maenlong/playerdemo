@@ -20,6 +20,7 @@
 #include <QScreen>
 #include <QRect>
 #include <QFileDialog>
+#include <QAction>
 
 #include "mainwid.h"
 #include "ui_mainwid.h"
@@ -35,7 +36,11 @@ MainWid::MainWid(QMainWindow *parent) :
     m_stMenu(this),
     m_stPlaylist(this),
     m_stTitle(this),
-    m_bMoveDrag(false)
+    m_bMoveDrag(false),
+	m_stActExit(this),
+	m_stActAbout(this),
+	m_stActOpen(this),
+	m_stActFullscreen(this)
 {
     ui->setupUi(this);
     //无边框、无系统菜单、 任务栏点击最小化
@@ -395,7 +400,7 @@ void MainWid::OnFullscreenMouseDetectTimeOut()
             {
                 //需要隐藏
                 m_bFullscreenCtrlBarShow = false;
-                stCtrlBarHideTimer.singleShot(2000, this, &MainWid::OnCtrlBarHideTimeOut);
+                stCtrlBarHideTimer.singleShot(2000, this, SLOT(OnCtrlBarHideTimeOut()));
             }
 
         }

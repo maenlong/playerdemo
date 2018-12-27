@@ -7,7 +7,10 @@
 
 MediaList::MediaList(QWidget *parent)
     : QListWidget(parent),
-    m_stMenu(this)
+    m_stMenu(this),
+	m_stActAdd(this),
+	m_stActRemove(this),
+	m_stActClearList(this)
 {
 
 
@@ -47,8 +50,10 @@ void MediaList::AddFile()
     QStringList listFileName = QFileDialog::getOpenFileNames(this, "打开文件", QDir::homePath(),
         "视频文件(*.mkv *.rmvb *.mp4 *.avi *.flv *.wmv *.3gp)");
 
-    for (QString strFileName : listFileName)
+	//for (QString strFileName : listFileName)
+	for (int a = 0; a < listFileName.count(); a++)
     {
+        QString strFileName = listFileName.at(a);
         emit SigAddFile(strFileName);
     }
 }

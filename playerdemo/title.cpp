@@ -38,12 +38,12 @@ Title::Title(QWidget *parent) :
     connect(ui->FullScreenBtn, &QPushButton::clicked, this, &Title::SigFullScreenBtnClicked);
     connect(ui->MenuBtn, &QPushButton::clicked, this, &Title::SigShowMenu);
  
-    m_stMenu.addAction("最大化", this, &Title::SigMaxBtnClicked);
-    m_stMenu.addAction("最小化", this, &Title::SigMinBtnClicked);
-    m_stMenu.addAction("退出", this, &Title::SigCloseBtnClicked);
+    m_stMenu.addAction("最大化", this, SIGNAL(Title::SigMaxBtnClicked()));
+    m_stMenu.addAction("最小化", this, SIGNAL(Title::SigMinBtnClicked()));
+    m_stMenu.addAction("退出", this, SIGNAL(Title::SigCloseBtnClicked()));
 
     QMenu* stMenu = m_stMenu.addMenu("打开");
-    stMenu->addAction("打开文件", this, &Title::OpenFile);
+    stMenu->addAction("打开文件", this, SLOT(Title::OpenFile()));
 
     ui->MenuBtn->setToolTip("显示主菜单");
     ui->MinBtn->setToolTip("最小化");

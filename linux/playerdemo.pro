@@ -9,7 +9,8 @@ QT += core gui widgets
 #CONFIG += debug
 #DEFINES += _UNICODE WIN64 QT_WIDGETS_LIB
 
-	
+CONFIG += c++11
+
 LIBS += -L$$PWD/../playerdemo/lib/sdl/lib \
     -L$$PWD/../playerdemo/lib/ffmpeg/lib \
     -lSDL2 \
